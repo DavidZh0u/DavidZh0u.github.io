@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Centos7环境安装redis | 编程练习生-周大伟</title>
+    <meta name="description" content="有道无术，术尚可求；有术无道，止于术。">
+    <link rel="icon" href="/images/index.jpg">
+  <link rel="manifest" href="/images/index.jpg">
+  <link rel="apple-touch-icon" href="/images/index.jpg">
+  <meta http-quiv="pragma" cotent="no-cache">
+  <meta http-quiv="expires" cotent="0">
+  <meta http-quiv="pragma" cotent="no-cache, must-revalidate">
+    
+    <link rel="preload" href="/assets/css/0.styles.051786a9.css" as="style"><link rel="preload" href="/assets/js/app.e708f52c.js" as="script"><link rel="preload" href="/assets/js/2.009073d5.js" as="script"><link rel="preload" href="/assets/js/49.c99e5906.js" as="script"><link rel="prefetch" href="/assets/js/10.b7b926bf.js"><link rel="prefetch" href="/assets/js/11.8ed757d6.js"><link rel="prefetch" href="/assets/js/12.92d24caf.js"><link rel="prefetch" href="/assets/js/13.7a61e744.js"><link rel="prefetch" href="/assets/js/14.31822977.js"><link rel="prefetch" href="/assets/js/15.a4c2537a.js"><link rel="prefetch" href="/assets/js/16.e7d19572.js"><link rel="prefetch" href="/assets/js/17.cebcc94b.js"><link rel="prefetch" href="/assets/js/18.2a56d01c.js"><link rel="prefetch" href="/assets/js/19.86601877.js"><link rel="prefetch" href="/assets/js/20.e25c614a.js"><link rel="prefetch" href="/assets/js/21.e65c3bdb.js"><link rel="prefetch" href="/assets/js/22.bf87a705.js"><link rel="prefetch" href="/assets/js/23.a2379785.js"><link rel="prefetch" href="/assets/js/24.c36138e6.js"><link rel="prefetch" href="/assets/js/25.fe844c78.js"><link rel="prefetch" href="/assets/js/26.8f93f8cc.js"><link rel="prefetch" href="/assets/js/27.afbaa745.js"><link rel="prefetch" href="/assets/js/28.0b804001.js"><link rel="prefetch" href="/assets/js/29.ab83e471.js"><link rel="prefetch" href="/assets/js/3.a4c489a8.js"><link rel="prefetch" href="/assets/js/30.a1331808.js"><link rel="prefetch" href="/assets/js/31.4b333253.js"><link rel="prefetch" href="/assets/js/32.852714d6.js"><link rel="prefetch" href="/assets/js/33.0fdb7079.js"><link rel="prefetch" href="/assets/js/34.86d2419b.js"><link rel="prefetch" href="/assets/js/35.c0dc95d1.js"><link rel="prefetch" href="/assets/js/36.4f1a3095.js"><link rel="prefetch" href="/assets/js/37.be20eea3.js"><link rel="prefetch" href="/assets/js/38.ed229447.js"><link rel="prefetch" href="/assets/js/39.7e30c0b7.js"><link rel="prefetch" href="/assets/js/4.244111db.js"><link rel="prefetch" href="/assets/js/40.0157514b.js"><link rel="prefetch" href="/assets/js/41.c532484c.js"><link rel="prefetch" href="/assets/js/42.e8d7f5b1.js"><link rel="prefetch" href="/assets/js/43.983598b1.js"><link rel="prefetch" href="/assets/js/44.a27197e7.js"><link rel="prefetch" href="/assets/js/45.418a3590.js"><link rel="prefetch" href="/assets/js/46.7be0a60c.js"><link rel="prefetch" href="/assets/js/47.05c776d5.js"><link rel="prefetch" href="/assets/js/48.62a922b3.js"><link rel="prefetch" href="/assets/js/5.f444bec9.js"><link rel="prefetch" href="/assets/js/50.78e02690.js"><link rel="prefetch" href="/assets/js/51.5d905ddb.js"><link rel="prefetch" href="/assets/js/52.d3faa73a.js"><link rel="prefetch" href="/assets/js/53.7b2fe8fc.js"><link rel="prefetch" href="/assets/js/54.69b928af.js"><link rel="prefetch" href="/assets/js/55.5744b5ef.js"><link rel="prefetch" href="/assets/js/56.5ea34e64.js"><link rel="prefetch" href="/assets/js/57.b89678aa.js"><link rel="prefetch" href="/assets/js/58.1e86bf6d.js"><link rel="prefetch" href="/assets/js/59.17f5b452.js"><link rel="prefetch" href="/assets/js/6.a22472ee.js"><link rel="prefetch" href="/assets/js/60.751a7b94.js"><link rel="prefetch" href="/assets/js/61.4100992e.js"><link rel="prefetch" href="/assets/js/62.68a37b0a.js"><link rel="prefetch" href="/assets/js/63.48533903.js"><link rel="prefetch" href="/assets/js/64.76cf9f35.js"><link rel="prefetch" href="/assets/js/7.103dcbb8.js"><link rel="prefetch" href="/assets/js/8.83b8fc94.js"><link rel="prefetch" href="/assets/js/9.4597d071.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.051786a9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">编程练习生-周大伟</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">内容导航</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">生活随笔</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">技术之道</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">兴趣爱好</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">测试按钮</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>第一个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项1</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项2</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项3</a></li></ul></li><li class="dropdown-item"><h4>第二个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项4</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项5</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项6</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">技术方向</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skill/Java/index.html" class="nav-link">Java杂谈</a></li><li class="dropdown-item"><!----> <a href="/skill/spring/index.html" class="nav-link">Spring</a></li><li class="dropdown-item"><!----> <a href="/skill/fore-end/index.html" class="nav-link">前端</a></li><li class="dropdown-item"><!----> <a href="/skill/linux/index.html" class="nav-link">Linux</a></li><li class="dropdown-item"><!----> <a href="/skill/mysql/index.html" class="nav-link">mysql</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">在线文档</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/bootstrap/bootstrap-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Bootstrap
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/info/" class="nav-link">在线工具</a></div><div class="nav-item"><a href="/info/我是谁.html" class="nav-link">个人信息</a></div><div class="nav-item"><a href="https://baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  传送门
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">内容导航</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">生活随笔</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">技术之道</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">兴趣爱好</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">测试按钮</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>第一个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项1</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项2</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项3</a></li></ul></li><li class="dropdown-item"><h4>第二个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项4</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项5</a></li><li class="dropdown-subitem"><a href="/coding/redis/www.baidu.com.html" class="nav-link">选项6</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">技术方向</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skill/Java/index.html" class="nav-link">Java杂谈</a></li><li class="dropdown-item"><!----> <a href="/skill/spring/index.html" class="nav-link">Spring</a></li><li class="dropdown-item"><!----> <a href="/skill/fore-end/index.html" class="nav-link">前端</a></li><li class="dropdown-item"><!----> <a href="/skill/linux/index.html" class="nav-link">Linux</a></li><li class="dropdown-item"><!----> <a href="/skill/mysql/index.html" class="nav-link">mysql</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">在线文档</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/bootstrap/bootstrap-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Bootstrap
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/info/" class="nav-link">在线工具</a></div><div class="nav-item"><a href="/info/我是谁.html" class="nav-link">个人信息</a></div><div class="nav-item"><a href="https://baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  传送门
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="centos7环境安装redis"><a href="#centos7环境安装redis" aria-hidden="true" class="header-anchor">#</a> Centos7环境安装redis</h1> <hr> <h3 id="上传安装包"><a href="#上传安装包" aria-hidden="true" class="header-anchor">#</a> 上传安装包</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host102 mydir]# rz
+
+[root@host102 mydir]# ll
+total 1520
+-rw-r--r--. 1 root root    5824 Oct 12 05:04 mysql-community-release-el6-5.noarch.rpm
+-rw-r--r--. 1 root root 1547695 Oct 12 04:54 redis-3.2.9.tar.gz
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="安装gcc环境"><a href="#安装gcc环境" aria-hidden="true" class="header-anchor">#</a> 安装GCC环境</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 一路yes即可
+[root@host102 mydir]# yum install gcc-c++
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="解压缩redis源码包"><a href="#解压缩redis源码包" aria-hidden="true" class="header-anchor">#</a> 解压缩Redis源码包</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host102 mydir]# tar -zxf redis-3.2.9.tar.gz 
+
+# 解压缩后多出来一个redis的目录
+[root@host102 mydir]# ll
+total 1524
+-rw-r--r--. 1 root root    5824 Oct 12 05:04 mysql-community-release-el6-5.noarch.rpm
+drwxrwxr-x. 6 root root    4096 May 17  2017 redis-3.2.9
+-rw-r--r--. 1 root root 1547695 Oct 12 04:54 redis-3.2.9.tar.gz
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="编译redis源码"><a href="#编译redis源码" aria-hidden="true" class="header-anchor">#</a> 编译Redis源码</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 进入redis源码目录
+[root@host102 mydir]# cd redis-3.2.9
+
+# 编译源码
+[root@host102 redis-3.2.9]# make
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="安装redis"><a href="#安装redis" aria-hidden="true" class="header-anchor">#</a> 安装redis</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 安装到指定目录
+[root@host102 redis-3.2.9]# make install PREFIX=/usr/local/redis
+
+# 查看安装
+[root@host102 redis-3.2.9]# cd /usr/local/redis/
+[root@host102 redis]# ll
+total 0
+drwxr-xr-x. 2 root root 134 Oct 29 22:40 bin
+[root@host102 redis]# cd bin
+[root@host102 bin]# ll
+total 15060
+-rwxr-xr-x. 1 root root 2432872 Oct 29 22:40 redis-benchmark
+-rwxr-xr-x. 1 root root   24992 Oct 29 22:40 redis-check-aof
+-rwxr-xr-x. 1 root root 5181776 Oct 29 22:40 redis-check-rdb
+-rwxr-xr-x. 1 root root 2585856 Oct 29 22:40 redis-cli
+lrwxrwxrwx. 1 root root      12 Oct 29 22:40 redis-sentinel -&gt; redis-server
+-rwxr-xr-x. 1 root root 5181776 Oct 29 22:40 redis-server
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h3 id="前端启动"><a href="#前端启动" aria-hidden="true" class="header-anchor">#</a> 前端启动</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 前端启动
+# ctrl+c后，服务端关闭
+[root@host102 bin]# ./redis-server 
+5099:C 29 Oct 22:48:49.844 # Warning: no config file specified, using the default config. In order to specify a config file use ./redis-server /path/to/redis.conf
+5099:M 29 Oct 22:48:49.845 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 3.2.9 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 5099
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'       
+               
+# 按下ctrl+c后
+^C5099:signal-handler (1572360794) Received SIGINT scheduling shutdown...
+5099:M 29 Oct 22:53:14.909 # User requested shutdown...
+5099:M 29 Oct 22:53:14.910 * Saving the final RDB snapshot before exiting.
+5099:M 29 Oct 22:53:14.913 * DB saved on disk
+5099:M 29 Oct 22:53:14.913 # Redis is now ready to exit, bye bye...
+[root@host102 bin]#                                       
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><h3 id="后端启动"><a href="#后端启动" aria-hidden="true" class="header-anchor">#</a> 后端启动</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 拷贝redis解压源码目录中的redis.conf文件到安装目录下的bin目录中
+[root@host102 bin]# cp /mydir/redis-3.2.9/redis.conf ./
+[root@host102 bin]# ll
+total 15112
+-rw-r--r--. 1 root root      76 Oct 29 22:53 dump.rdb
+-rwxr-xr-x. 1 root root 2432872 Oct 29 22:40 redis-benchmark
+-rwxr-xr-x. 1 root root   24992 Oct 29 22:40 redis-check-aof
+-rwxr-xr-x. 1 root root 5181776 Oct 29 22:40 redis-check-rdb
+-rwxr-xr-x. 1 root root 2585856 Oct 29 22:40 redis-cli
+-rw-r--r--. 1 root root   46695 Oct 29 23:10 redis.conf
+lrwxrwxrwx. 1 root root      12 Oct 29 22:40 redis-sentinel -&gt; redis-server
+-rwxr-xr-x. 1 root root 5181776 Oct 29 22:40 redis-server
+
+
+
+# 修改redis.conf
+# 修改daemonize的值为yes
+# 修改bind 127.0.0.1 的ip地址为本机真实ip:我这台机ip:192.168.163.102
+[root@host102 bin]# vi redis.conf 
+
+------------------------------------------------------------------------
+...
+# IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
+# JUST COMMENT THE FOLLOWING LINE.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bind 192.168.163.102
+...
+# By default Redis does not run as a daemon. Use 'yes' if you need it.
+# Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
+daemonize yes
+...
+------------------------------------------------------------------------
+
+
+# 启动命令
+[root@host102 bin]# ./redis-server redis.conf
+# 查看redis服务端进程
+[root@host102 bin]# ps -ef|grep redis
+root       5124      1  0 23:20 ?        00:00:00 ./redis-server 192.168.163.102:6379
+root       5128   1922  0 23:21 pts/0    00:00:00 grep --color=auto redis
+
+# 杀进程号关闭
+[root@host102 bin]# ps -ef|grep redis
+root       5124      1  0 23:20 ?        00:00:00 ./redis-server 192.168.163.102:6379
+root       5138   1922  0 23:34 pts/0    00:00:00 grep --color=auto redis
+[root@host102 bin]# kill 5124
+[root@host102 bin]# ps -ef|grep redis
+root       5140   1922  0 23:35 pts/0    00:00:00 grep --color=auto redis
+
+
+# 正常关闭redis
+[root@host102 bin]# ./redis-cli shutdown
+
+# 进入redis命令客户端
+[root@host102 bin]# ./redis-cli -h 192.168.163.102 -p 6379
+# 选择库0
+192.168.163.102:6379&gt; select 0
+OK
+192.168.163.102:6379&gt; set key1 val1
+OK
+192.168.163.102:6379&gt; get key1
+&quot;val1&quot;
+# 其他操作指令，请自行测试
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br></div></div><h3 id="远程客户端连接"><a href="#远程客户端连接" aria-hidden="true" class="header-anchor">#</a> 远程客户端连接</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 修改redis.conf文件
+# 注释掉bind 192.168.163.102
+# 将protect-mode的值设置为 no
+# 设置密码admin321
+------------------------------------------------------------------------
+#bind 192.168.163.102	
+protected-mode no
+requirepass admin321
+------------------------------------------------------------------------
+
+# 重新启动redis服务
+# 暴露6379端口给外部
+[root@host102 bin]# firewall-cmd --zone=public --add-port=6379/tcp --permanent
+success
+[root@host102 bin]# firewall-cmd --reload 
+success
+[root@host102 bin]# firewall-cmd --list-ports
+3306/tcp 6379/tcp
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>使用可视化客户端RedisDesktopManager登录测试：
+<img src="/images/redis/redis1.png" alt=""><br></p> <h3 id="完毕"><a href="#完毕" aria-hidden="true" class="header-anchor">#</a> 完毕</h3> <p>其他命令，请自行测试。<br>
+后续将测试redis的主从复制，持久化，哨兵模式和集群 。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e708f52c.js" defer></script><script src="/assets/js/2.009073d5.js" defer></script><script src="/assets/js/49.c99e5906.js" defer></script>
+  </body>
+</html>
