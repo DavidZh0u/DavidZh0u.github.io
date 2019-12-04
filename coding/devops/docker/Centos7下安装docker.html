@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Centos7下安装docker | 编程练习生-周大伟</title>
+    <meta name="description" content="有道无术，术尚可求；有术无道，止于术。">
+    <link rel="icon" href="/images/index.jpg">
+  <link rel="manifest" href="/images/index.jpg">
+  <link rel="apple-touch-icon" href="/images/index.jpg">
+  <meta http-quiv="pragma" cotent="no-cache">
+  <meta http-quiv="expires" cotent="0">
+  <meta http-quiv="pragma" cotent="no-cache, must-revalidate">
+    
+    <link rel="preload" href="/assets/css/0.styles.051786a9.css" as="style"><link rel="preload" href="/assets/js/app.b72606ea.js" as="script"><link rel="preload" href="/assets/js/2.009073d5.js" as="script"><link rel="preload" href="/assets/js/7.9892eb3b.js" as="script"><link rel="prefetch" href="/assets/js/10.8052dcd5.js"><link rel="prefetch" href="/assets/js/11.6c1bd076.js"><link rel="prefetch" href="/assets/js/12.fc9a82b6.js"><link rel="prefetch" href="/assets/js/13.5eb30f78.js"><link rel="prefetch" href="/assets/js/14.a639e12f.js"><link rel="prefetch" href="/assets/js/15.bdfbcd1a.js"><link rel="prefetch" href="/assets/js/16.695bd086.js"><link rel="prefetch" href="/assets/js/17.5678d4f2.js"><link rel="prefetch" href="/assets/js/18.8780292b.js"><link rel="prefetch" href="/assets/js/19.77f42d1b.js"><link rel="prefetch" href="/assets/js/20.e25c614a.js"><link rel="prefetch" href="/assets/js/21.4bbab9fb.js"><link rel="prefetch" href="/assets/js/22.bf87a705.js"><link rel="prefetch" href="/assets/js/23.f229c0fa.js"><link rel="prefetch" href="/assets/js/24.30eb8305.js"><link rel="prefetch" href="/assets/js/25.88743743.js"><link rel="prefetch" href="/assets/js/26.2d7e0aa2.js"><link rel="prefetch" href="/assets/js/27.5b310cb6.js"><link rel="prefetch" href="/assets/js/28.19aa4725.js"><link rel="prefetch" href="/assets/js/29.dad73ace.js"><link rel="prefetch" href="/assets/js/3.a4c489a8.js"><link rel="prefetch" href="/assets/js/30.247a8cea.js"><link rel="prefetch" href="/assets/js/31.92816731.js"><link rel="prefetch" href="/assets/js/32.79ee03ca.js"><link rel="prefetch" href="/assets/js/33.0f94f829.js"><link rel="prefetch" href="/assets/js/34.86d2419b.js"><link rel="prefetch" href="/assets/js/35.c0dc95d1.js"><link rel="prefetch" href="/assets/js/36.4f1a3095.js"><link rel="prefetch" href="/assets/js/37.971326b1.js"><link rel="prefetch" href="/assets/js/38.ed229447.js"><link rel="prefetch" href="/assets/js/39.c8db9a95.js"><link rel="prefetch" href="/assets/js/4.244111db.js"><link rel="prefetch" href="/assets/js/40.0157514b.js"><link rel="prefetch" href="/assets/js/41.e51cbfee.js"><link rel="prefetch" href="/assets/js/42.6ff72c31.js"><link rel="prefetch" href="/assets/js/43.1dc8f614.js"><link rel="prefetch" href="/assets/js/44.b35909e1.js"><link rel="prefetch" href="/assets/js/45.e651b06f.js"><link rel="prefetch" href="/assets/js/46.e8817dcb.js"><link rel="prefetch" href="/assets/js/47.67e0fdfa.js"><link rel="prefetch" href="/assets/js/48.0b5a8c11.js"><link rel="prefetch" href="/assets/js/49.c99e5906.js"><link rel="prefetch" href="/assets/js/5.f444bec9.js"><link rel="prefetch" href="/assets/js/50.310f7068.js"><link rel="prefetch" href="/assets/js/51.3e2ea8de.js"><link rel="prefetch" href="/assets/js/52.d3faa73a.js"><link rel="prefetch" href="/assets/js/53.7b2fe8fc.js"><link rel="prefetch" href="/assets/js/54.36789f48.js"><link rel="prefetch" href="/assets/js/55.5744b5ef.js"><link rel="prefetch" href="/assets/js/56.4486a446.js"><link rel="prefetch" href="/assets/js/57.74a082da.js"><link rel="prefetch" href="/assets/js/58.13765365.js"><link rel="prefetch" href="/assets/js/59.b1d00ae4.js"><link rel="prefetch" href="/assets/js/6.a4439dba.js"><link rel="prefetch" href="/assets/js/60.33ec256f.js"><link rel="prefetch" href="/assets/js/61.fa42d696.js"><link rel="prefetch" href="/assets/js/62.e7d9236f.js"><link rel="prefetch" href="/assets/js/63.5b7372c4.js"><link rel="prefetch" href="/assets/js/64.76cf9f35.js"><link rel="prefetch" href="/assets/js/8.f0a4679a.js"><link rel="prefetch" href="/assets/js/9.23798b95.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.051786a9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">编程练习生-周大伟</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">内容导航</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">生活随笔</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">技术之道</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">兴趣爱好</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">测试按钮</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>第一个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项1</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项2</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项3</a></li></ul></li><li class="dropdown-item"><h4>第二个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项4</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项5</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项6</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">技术方向</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skill/Java/index.html" class="nav-link">Java杂谈</a></li><li class="dropdown-item"><!----> <a href="/skill/spring/index.html" class="nav-link">Spring</a></li><li class="dropdown-item"><!----> <a href="/skill/fore-end/index.html" class="nav-link">前端</a></li><li class="dropdown-item"><!----> <a href="/skill/linux/index.html" class="nav-link">Linux</a></li><li class="dropdown-item"><!----> <a href="/skill/mysql/index.html" class="nav-link">mysql</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">在线文档</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/bootstrap/bootstrap-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Bootstrap
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/info/" class="nav-link">在线工具</a></div><div class="nav-item"><a href="/info/我是谁.html" class="nav-link">个人信息</a></div><div class="nav-item"><a href="https://baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  传送门
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">内容导航</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">生活随笔</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">技术之道</a></li><li class="dropdown-item"><!----> <a href="/info/我是谁.html" class="nav-link">兴趣爱好</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">测试按钮</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>第一个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项1</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项2</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项3</a></li></ul></li><li class="dropdown-item"><h4>第二个选项组</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项4</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项5</a></li><li class="dropdown-subitem"><a href="/coding/devops/docker/www.baidu.com.html" class="nav-link">选项6</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">技术方向</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/skill/Java/index.html" class="nav-link">Java杂谈</a></li><li class="dropdown-item"><!----> <a href="/skill/spring/index.html" class="nav-link">Spring</a></li><li class="dropdown-item"><!----> <a href="/skill/fore-end/index.html" class="nav-link">前端</a></li><li class="dropdown-item"><!----> <a href="/skill/linux/index.html" class="nav-link">Linux</a></li><li class="dropdown-item"><!----> <a href="/skill/mysql/index.html" class="nav-link">mysql</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">在线文档</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/bootstrap/bootstrap-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Bootstrap
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/info/" class="nav-link">在线工具</a></div><div class="nav-item"><a href="/info/我是谁.html" class="nav-link">个人信息</a></div><div class="nav-item"><a href="https://baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  传送门
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/coding/devops/Devops平台介绍.html" class="sidebar-link">Devops平台介绍</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Docker系列</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/coding/devops/docker/docker介绍与安装.html" class="sidebar-link">Docker介绍与安装</a></li><li><a href="/coding/devops/docker/Centos7下安装docker.html" class="active sidebar-link">Centos7下安装docker</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#安装步骤" class="sidebar-link">安装步骤</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_1-关闭防火墙" class="sidebar-link">1.关闭防火墙</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_2-关闭selinux" class="sidebar-link">2.关闭SELinux</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_3-安装所需的软件包" class="sidebar-link">3.安装所需的软件包</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_4-配置docker-ce的源" class="sidebar-link">4.配置docker-ce的源</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_5-安装docker-ce" class="sidebar-link">5.安装docker-ce</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_6-启动docker-并设置开机启动" class="sidebar-link">6.启动docker,并设置开机启动</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_7-运行hello-world" class="sidebar-link">7.运行hello-world</a></li><li class="sidebar-sub-header"><a href="/coding/devops/docker/Centos7下安装docker.html#_8-运行一个nginx测试" class="sidebar-link">8.运行一个nginx测试</a></li></ul></li></ul></li><li><a href="/coding/devops/docker/镜像管理.html" class="sidebar-link">镜像管理</a></li><li><a href="/coding/devops/docker/容器管理.html" class="sidebar-link">容器管理</a></li><li><a href="/coding/devops/docker/docker数据卷管理.html" class="sidebar-link">docker数据卷管理</a></li><li><a href="/coding/devops/docker/搭建LNMP网站平台.html" class="sidebar-link">搭建LNMP网站平台</a></li><li><a href="/coding/devops/docker/网络管理.html" class="sidebar-link">网络管理</a></li><li><a href="/coding/devops/docker/Dockerfile介绍.html" class="sidebar-link">Dockerfile介绍</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Kubernetes系列</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Jenkins系列</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="centos7下安装docker"><a href="#centos7下安装docker" aria-hidden="true" class="header-anchor">#</a> Centos7下安装docker</h1> <hr> <h2 id="安装步骤"><a href="#安装步骤" aria-hidden="true" class="header-anchor">#</a> 安装步骤</h2> <h3 id="_1-关闭防火墙"><a href="#_1-关闭防火墙" aria-hidden="true" class="header-anchor">#</a> 1.关闭防火墙</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 关闭防火墙
+[root@host106 ~]# systemctl stop firewalld
+# 禁止启动开启防火墙
+[root@host106 ~]# systemctl disable firewalld
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_2-关闭selinux"><a href="#_2-关闭selinux" aria-hidden="true" class="header-anchor">#</a> 2.关闭SELinux</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host106 ~]# vi /etc/selinux/config
+######################################################
+# 修改selinux为disabled
+# SELINUX=disabled
+######################################################
+
+# 重启系统，验证关闭
+[root@host106 ~]# getenforce
+Disabled
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="_3-安装所需的软件包"><a href="#_3-安装所需的软件包" aria-hidden="true" class="header-anchor">#</a> 3.安装所需的软件包</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host106 ~]# yum install -y yum-utils \
+                  device-mapper-persistent-data \
+                  lvm2
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_4-配置docker-ce的源"><a href="#_4-配置docker-ce的源" aria-hidden="true" class="header-anchor">#</a> 4.配置docker-ce的源</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host106 ~]# yum-config-manager \
+                  --add-repo \
+                  https://download.docker.com/linux/centos/docker-ce.repo
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_5-安装docker-ce"><a href="#_5-安装docker-ce" aria-hidden="true" class="header-anchor">#</a> 5.安装docker-ce</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host106 ~]# yum install docker-ce -y
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_6-启动docker-并设置开机启动"><a href="#_6-启动docker-并设置开机启动" aria-hidden="true" class="header-anchor">#</a> 6.启动docker,并设置开机启动</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host106 ~]# systemctl start docker
+[root@host106 ~]# systemctl enable docker
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="_7-运行hello-world"><a href="#_7-运行hello-world" aria-hidden="true" class="header-anchor">#</a> 7.运行hello-world</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@host106 ~]# docker run hello-world
+
+# 看看执行情况
+[root@host106 ~]# docker info
+#####################################
+# 已经运行过 docker run hello-world 就会出现如下情况
+Server:
+ Containers: 1
+  Running: 0
+  Paused: 0
+  Stopped: 1
+ Images: 1
+#####################################
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h3 id="_8-运行一个nginx测试"><a href="#_8-运行一个nginx测试" aria-hidden="true" class="header-anchor">#</a> 8.运行一个nginx测试</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 运行完，不要ctrl+c，否则会关闭运行，这是一个前台运行
+[root@host106 ~]# docker run -it nginx
+
+# 复制会话，查看一下docker进程，可以看到ngnix已经在运行状态&quot;up&quot;
+[root@host106 ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+f60fbaf65446        nginx               &quot;nginx -g 'daemon of…&quot;   26 seconds ago      Up 24 seconds       80/tcp              happy_sammet
+
+# 查看nginx容器详情
+[root@host106 ~]# docker inspect f60fbaf65446 
+# 截取其中一段，容器的ip:172.17.0.2
+    &quot;Networks&quot;: {
+        &quot;bridge&quot;: {
+            &quot;IPAMConfig&quot;: null,
+            &quot;Links&quot;: null,
+            &quot;Aliases&quot;: null,
+            &quot;NetworkID&quot;: &quot;e9de9968f67aabc8f276bc57a58564306deb2c7ea6d8758ac9ad26cf150b23ab&quot;,
+            &quot;EndpointID&quot;: &quot;e60eb73c6bb0f711c5a9088a0ceeb990fb6b53abfb987210c8183a74e9dafe7b&quot;,
+            &quot;Gateway&quot;: &quot;172.17.0.1&quot;,
+            &quot;IPAddress&quot;: &quot;172.17.0.2&quot;,
+            &quot;IPPrefixLen&quot;: 16,
+            &quot;IPv6Gateway&quot;: &quot;&quot;,
+            &quot;GlobalIPv6Address&quot;: &quot;&quot;,
+            &quot;GlobalIPv6PrefixLen&quot;: 0,
+            &quot;MacAddress&quot;: &quot;02:42:ac:11:00:02&quot;,
+            &quot;DriverOpts&quot;: null
+        }
+    }
+
+# 访问nginx容器
+# 如下，访问nginx成功，它给了我们一个欢迎页面。
+[root@host106 ~]# curl 172.17.0.2
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+# 通过容器的ID(CONTAINER ID)进入容器中
+# 我们可以看到一个与当前主机一样的文件系统，但是它是单独隔离的出来的。
+# 但是在容器中很多命令是不支持的，它只提供一个简易的运行环境
+[root@host106 ~]# docker exec -it f60fbaf65446 bash
+root@f60fbaf65446:/# ^C
+root@f60fbaf65446:/# ls
+bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  root  run  sbin  srv  sys  tmp  usr  var
+root@f60fbaf65446:/# 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br></div></div><p><a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener noreferrer">Docker官方文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/coding/devops/docker/docker介绍与安装.html" class="prev">
+          Docker介绍与安装
+        </a></span> <span class="next"><a href="/coding/devops/docker/镜像管理.html">
+          镜像管理
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b72606ea.js" defer></script><script src="/assets/js/2.009073d5.js" defer></script><script src="/assets/js/7.9892eb3b.js" defer></script>
+  </body>
+</html>
